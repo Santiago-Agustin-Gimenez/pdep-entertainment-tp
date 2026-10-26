@@ -1,3 +1,3 @@
 object fan{
-    method porcentajeDescuento() = 1
+    method porcentajeDescuento(asistente) = 0
 }

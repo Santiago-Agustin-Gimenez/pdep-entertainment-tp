@@ -1,8 +1,8 @@
 class Banda{
     var property nombre
-    var property canon = 1000000
+    const canonBase = 1000000
 
-    method canon() = canon
+    method canon() = canonBase
 
     method calcularPresupuesto() = self.canon() + self.gastoExtra()
 
@@ -32,7 +32,7 @@ class BandaDeTrap inherits Banda{
         }
     }
 
-    override method canon() = canon * self.calcularPopularidad()
+    override method canon() = canonBase * self.calcularPopularidad()
 }
 
 class BandaDeIndie inherits Banda{

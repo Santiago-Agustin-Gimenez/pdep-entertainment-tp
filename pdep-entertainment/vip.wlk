@@ -1,3 +1,3 @@
 object vip{
-    method porcentajeDeDescuento(asistente) = asistente.abono()
+    method porcentajeDescuento(asistente) = asistente.porcentajeDescuentoVip()
 }
