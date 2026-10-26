@@ -28,7 +28,7 @@ object productora {
     method gananciaTotal() = self.recaudacion() - self.presupuestoDeBandas()
 
     method entradasVendidasDe(banda) {
-        var cantidad
+        var cantidad = 0
         self.entradasVendidas().forEach({entrada =>
         if (entrada.banda() == banda) {
             cantidad += 1

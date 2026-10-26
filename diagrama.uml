@@ -1,0 +1,102 @@
+@startuml
+
+class Asistente {
+  tipoDeAbono
+  historialDeEntradas
+  dinero
+  porcentajeDescuentoVip
+  --
+  abono()
+  montoAPagar(entrada)
+  porcentajeDeDescuento()
+  saldoPositivo()
+  comprar(entrada)
+  entradasDelAnioAnterior(anioActual)
+  nombresDeBandas()
+  bonificarVip()
+}
+
+class Entrada {
+  banda
+  fecha
+  precioBase
+  --
+  precioPublico()
+  impuesto()
+}
+
+abstract class Banda {
+  nombre
+  canonBase
+  --
+  canon()
+  calcularPresupuesto()
+  gastoExtra()
+  calcularPopularidad()
+}
+
+class BandaDeRock {
+  solosDeGuitarra
+  --
+  gastoExtra()
+  calcularPopularidad()
+}
+
+class BandaDeTrap {
+  tieneHielo
+  --
+  gastoExtra()
+  calcularPopularidad()
+  canon()
+}
+
+class BandaDeIndie {
+  instrumentos
+  --
+  gastoExtra()
+  calcularPopularidad()
+}
+
+class NoTieneSaldoSuficienteException
+
+object productora {
+  impuesto
+  bandas
+  asistentes
+  --
+  registrarBanda(banda)
+  registrarAsistente(asistente)
+  entradasVendidas()
+  cantidadDeEntradasVendidas()
+  recaudacion()
+  presupuestoDeBandas()
+  gananciaTotal()
+  entradasVendidasDe(banda)
+  bandaMasPopular()
+  bonificarAsistentesVip()
+}
+
+object fan {
+  porcentajeDescuento(asistente)
+}
+
+object vip {
+  porcentajeDescuento(asistente)
+}
+
+BandaDeRock --|> Banda
+BandaDeTrap --|> Banda
+BandaDeIndie --|> Banda
+NoTieneSaldoSuficienteException --|> Exception
+
+Asistente "1" *-- "*" Entrada : historial
+Entrada "*" --> "1" Banda : banda
+productora o-- "*" Banda : bandas
+productora o-- "*" Asistente : asistentes
+
+Asistente ..> fan : consulta descuento
+Asistente ..> vip : consulta descuento
+Entrada ..> productora : consulta impuesto
+productora ..> vip : bonifica
+
+@enduml
