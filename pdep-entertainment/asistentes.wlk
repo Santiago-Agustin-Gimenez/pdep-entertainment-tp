@@ -28,8 +28,10 @@ class Asistente{
         }
     }
 
-    method entradasDelAnioAnterior(anioActual) =
-        historialDeEntradas.filter({entrada => entrada.fecha().year() == anioActual - 1})
+    method entradasDelAnioAnterior() {
+        const anioAnterior = new Date().year() - 1
+        return historialEntradas.filter({entrada => entrada.fecha().year() == anioAnterior})
+    }
 
     method nombresDeBandas() =
         historialDeEntradas.map({entrada => entrada.banda().nombre()}).asSet()

@@ -1,6 +1,6 @@
 object productora {
     var property impuesto
-    const bandas = []
+    const property bandas = []
     const asistentes = []
 
     method registrarBanda(banda) {
@@ -13,17 +13,15 @@ object productora {
 
     method entradasVendidas() {
         const entradas = []
-        asistentes.forEach({asistente => asistente.historialDeEntradas().forEach({ entrada => entradas.add(entrada)})})
+        asistentes.forEach({asistente => entradas.addAll(asistente.historialDeEntradas())})
         return entradas
     }
 
     method cantidadDeEntradasVendidas() = self.entradasVendidas().size()
 
-    method recaudacion() =
-        self.entradasVendidas().sum({entrada => entrada.precioPublico()})
+    method recaudacion() = self.entradasVendidas().map({entrada => entrada.precioPublico()}).sum()
 
-    method presupuestoDeBandas() =
-        bandas.sum({banda => banda.calcularPresupuesto()})
+    method presupuestoDeBandas() = bandas.map({banda => banda.calcularPresupuesto()}).sum()
 
     method gananciaTotal() = self.recaudacion() - self.presupuestoDeBandas()
 

@@ -32,7 +32,7 @@ class BandaDeTrap inherits Banda{
         }
     }
 
-    override method canon() = canonBase * self.calcularPopularidad()
+    override method canon() = self.canon() * self.calcularPopularidad()
 }
 
 class BandaDeIndie inherits Banda{
